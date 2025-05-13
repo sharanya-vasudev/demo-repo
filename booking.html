@@ -97,3 +97,120 @@
       }
     </style>
   </head>
+<body>
+    <div class="site-container">
+      <!-- Navigation Bar -->
+      <header>
+        <nav class="navbar">
+          <div class="logo">
+            <a href="index.html">Campus Calm</a>
+          </div>
+          <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="booking.html" class="active">Book a Session</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="calm-mode-toggle">
+            <label class="switch">
+              <input type="checkbox" id="calmModeToggle">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Calm Mode</span>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Booking Header -->
+        <section class="page-header">
+          <h1>Book a Session</h1>
+          <p>Take the first step toward better mental well-being</p>
+        </section>
+
+        <!-- Booking Form -->
+        <section class="booking-section">
+          <div class="booking-form">
+            <form id="sessionBookingForm">
+              <div class="form-group">
+                <label for="service" class="form-label">Select a Service</label>
+                <select id="service" name="service" class="form-select" required>
+                  <option value="" disabled selected>Choose a service...</option>
+                  <option value="1on1">1-on-1 Therapy (50 min)</option>
+                  <option value="meditation">Guided Meditation (30 min)</option>
+                  <option value="academic">Academic Stress Counseling (45 min)</option>
+                  <option value="group">Group Sharing Circles (60 min)</option>
+                  <option value="checkin">Weekly Check-in (15 min)</option>
+                  <option value="workshop">Well-being Workshop (90 min)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Select a Date</label>
+                <div class="calendar" id="bookingCalendar">
+                  <div class="calendar-header">Sun</div>
+                  <div class="calendar-header">Mon</div>
+                  <div class="calendar-header">Tue</div>
+                  <div class="calendar-header">Wed</div>
+                  <div class="calendar-header">Thu</div>
+                  <div class="calendar-header">Fri</div>
+                  <div class="calendar-header">Sat</div>
+                  <!-- Calendar days will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="time" class="form-label">Preferred Time</label>
+                <select id="time" name="time" class="form-select" required>
+                  <option value="" disabled selected>Choose a time...</option>
+                  <option value="9:00">9:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" name="name" class="form-input" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-input" required>
+              </div>
+
+              <div class="form-group">
+                <label for="institution" class="form-label">University/Institution (Optional)</label>
+                <input type="text" id="institution" name="institution" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input type="checkbox" id="anonymous" name="anonymous" class="form-checkbox"> 
+                  Book Anonymously (Only your first name will be shared with the counselor)
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label for="notes" class="form-label">Additional Notes (Optional)</label>
+                <textarea id="notes" name="notes" class="form-input" rows="3"></textarea>
+              </div>
+
+              <button type="submit" class="button button-primary button-transition form-submit">Confirm Booking</button>
+            </form>
+          </div>
+        </section>
+      </main>
+
