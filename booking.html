@@ -243,4 +243,103 @@
         </div>
       </footer>
     </div>
-
+<!-- JavaScript for basic interactions -->
+    <script>
+      // Toggle mobile navigation
+      document.getElementById('navToggle').addEventListener('click', function() {
+        document.querySelector('.nav-links').classList.toggle('active');
+      });
+      
+      // Toggle calm mode
+      document.getElementById('calmModeToggle').addEventListener('change', function() {
+        document.documentElement.classList.toggle('calm-mode');
+        localStorage.setItem('calmMode', this.checked);
+      });
+      
+      // Check for saved calm mode preference
+      if (localStorage.getItem('calmMode') === 'true') {
+        document.getElementById('calmModeToggle').checked = true;
+        document.documentElement.classList.add('calm-mode');
+      }
+      
+      // Simple calendar functionality
+      function populateCalendar() {
+        const calendarElement = document.getElementById('bookingCalendar');
+        const today = new Date();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+        
+        // Get the first day of the current month
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        
+        // Get the number of days in the current month
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        
+        // Clear existing calendar days
+        const headerElements = calendarElement.querySelectorAll('.calendar-header');
+        while (calendarElement.childElementCount > headerElements.length) {
+          calendarElement.removeChild(calendarElement.lastChild);
+        }
+        
+        // Add empty cells for days before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+          const emptyDay = document.createElement('div');
+          emptyDay.className = 'calendar-day disabled';
+          calendarElement.appendChild(emptyDay);
+        }
+        
+        // Add days of the month
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayElement = document.createElement('div');
+          dayElement.className = 'calendar-day';
+          dayElement.textContent = day;
+          
+          // Disable past days
+          const currentDate = new Date(currentYear, currentMonth, day);
+          if (currentDate < today) {
+            dayElement.classList.add('disabled');
+          } else {
+            // Add click handler for selectable days
+            dayElement.addEventListener('click', function() {
+              // Remove selected class from all days
+              document.querySelectorAll('.calendar-day.selected').forEach(el => {
+                el.classList.remove('selected');
+              });
+              
+              // Add selected class to clicked day
+              this.classList.add('selected');
+            });
+          }
+          
+          calendarElement.appendChild(dayElement);
+        }
+      }
+      
+      // Form submission handler
+      document.getElementById('sessionBookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Simple validation
+        const selectedDay = document.querySelector('.calendar-day.selected');
+        
+        if (!selectedDay) {
+          alert('Please select a date for your appointment.');
+          return;
+        }
+        
+        // In a real application, this would send data to a server
+        // For now, just show a success message
+        alert('Thank you! Your session has been booked. You will receive a confirmation email shortly.');
+        
+        // Reset form
+        this.reset();
+        document.querySelectorAll('.calendar-day.selected').forEach(el => {
+          el.classList.remove('selected');
+        });
+      });
+      
+      // Initialize calendar
+      window.addEventListener('load', populateCalendar);
+    </script>
+  </body>
+</html>
